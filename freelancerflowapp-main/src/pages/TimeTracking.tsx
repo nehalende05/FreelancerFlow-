@@ -30,45 +30,49 @@ const TimeTracking = () => {
   }, []);
 
   return (
-    <div className="p-6 h-screen overflow-y-auto">
-      <motion.div initial={{ opacity: 0, y: -12 }} animate={{ opacity: 1, y: 0 }} className="mb-6">
-        <h1 className="text-2xl font-bold text-foreground">Time Tracking</h1>
-        <p className="text-sm text-muted-foreground mt-0.5">Track time spent on each project</p>
+    <div className="p-6 h-screen overflow-y-auto selection:bg-white/20">
+      <motion.div initial={{ opacity: 0, y: -12 }} animate={{ opacity: 1, y: 0 }} className="mb-10">
+        <h1 className="text-3xl font-semibold tracking-tighter text-white">Time Tracking</h1>
+        <p className="text-sm text-white/40 font-light mt-1 italic">Precision tracking for high-performance deep work.</p>
       </motion.div>
 
       {/* Timer */}
       <motion.div
         initial={{ opacity: 0, y: 16 }}
         animate={{ opacity: 1, y: 0 }}
-        className="glass-card p-8 mb-6 text-center glow-border"
+        className="glass-card-premium p-10 mb-8 text-center relative overflow-hidden"
       >
-        <p className="stat-label mb-4">Current Session</p>
+        <div className="absolute -top-24 -left-24 w-48 h-48 bg-white/[0.02] rounded-full blur-3xl pointer-events-none" />
+        
+        <p className="stat-label mb-6">Active Mission Session</p>
         <motion.p
           key={seconds}
-          className="text-5xl font-bold text-foreground mono tracking-wider"
+          className="text-6xl md:text-7xl font-semibold text-white mono tracking-tighter selection:bg-white/10"
         >
           {formatTime(seconds)}
         </motion.p>
-        <p className="text-sm text-muted-foreground mt-2">Landing Page Redesign – Nova Labs</p>
+        <p className="text-sm text-white/40 mt-4 font-light italic tracking-wide">Landing Page Redesign &ndash; Nova Labs</p>
 
-        <div className="flex items-center justify-center gap-4 mt-6">
+        <div className="flex items-center justify-center gap-6 mt-10">
           <motion.button
             whileTap={{ scale: 0.95 }}
+            whileHover={{ scale: 1.05 }}
             onClick={() => setIsRunning(!isRunning)}
-            className={`h-12 w-12 rounded-full flex items-center justify-center transition-all ${
+            className={`h-16 w-16 rounded-full flex items-center justify-center transition-all ${
               isRunning
-                ? "bg-destructive/20 text-destructive hover:bg-destructive/30"
-                : "bg-primary/20 text-primary hover:bg-primary/30"
+                ? "bg-rose-500/10 text-rose-400 border border-rose-500/20 hover:bg-rose-500/20"
+                : "bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 hover:bg-emerald-500/20"
             }`}
           >
-            {isRunning ? <Pause className="h-5 w-5" /> : <Play className="h-5 w-5 ml-0.5" />}
+            {isRunning ? <Pause className="h-6 w-6" /> : <Play className="h-6 w-6 ml-1" />}
           </motion.button>
           <motion.button
             whileTap={{ scale: 0.95 }}
+            whileHover={{ scale: 1.05 }}
             onClick={() => { setSeconds(0); setIsRunning(false); }}
-            className="h-12 w-12 rounded-full bg-secondary flex items-center justify-center text-muted-foreground hover:text-foreground transition-colors"
+            className="h-16 w-16 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white/40 hover:text-white hover:border-white/20 transition-all"
           >
-            <RotateCcw className="h-4 w-4" />
+            <RotateCcw className="h-5 w-5" />
           </motion.button>
         </div>
       </motion.div>
@@ -78,34 +82,36 @@ const TimeTracking = () => {
         initial={{ opacity: 0, y: 16 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.2 }}
-        className="glass-card overflow-hidden"
+        className="glass-card-premium overflow-hidden"
       >
-        <div className="px-5 py-4 border-b border-border/30">
-          <h3 className="stat-label">Recent Sessions</h3>
+        <div className="px-6 py-5 border-b border-white/5 bg-white/[0.02]">
+          <h3 className="stat-label">Mission History</h3>
         </div>
-        {timeEntries.map((entry, i) => (
-          <motion.div
-            key={entry.id}
-            initial={{ opacity: 0, x: -8 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.3 + i * 0.05 }}
-            className="flex items-center justify-between px-5 py-3.5 border-b border-border/20 last:border-0 hover:bg-secondary/20 transition-colors"
-          >
-            <div className="flex items-center gap-3">
-              <div className="h-8 w-8 rounded-lg bg-primary/10 flex items-center justify-center">
-                <Clock className="h-4 w-4 text-primary" />
+        <div className="divide-y divide-white/5">
+          {timeEntries.map((entry, i) => (
+            <motion.div
+              key={entry.id}
+              initial={{ opacity: 0, x: -8 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.3 + i * 0.05 }}
+              className="flex items-center justify-between px-6 py-4.5 hover:bg-white/[0.03] transition-colors group"
+            >
+              <div className="flex items-center gap-4">
+                <div className="h-10 w-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center group-hover:border-white/20 transition-colors">
+                  <Clock className="h-4 w-4 text-white/40 group-hover:text-white transition-colors" />
+                </div>
+                <div>
+                  <p className="text-sm font-medium text-white tracking-tight">{entry.project}</p>
+                  <p className="text-[10px] text-white/30 font-light mt-0.5">{entry.client}</p>
+                </div>
               </div>
-              <div>
-                <p className="text-sm font-medium text-foreground">{entry.project}</p>
-                <p className="text-[10px] text-muted-foreground">{entry.client}</p>
+              <div className="text-right">
+                <p className="text-sm font-semibold text-white mono tracking-tighter">{entry.duration}</p>
+                <p className="text-[10px] text-white/30 font-mono italic mt-0.5">{entry.date}</p>
               </div>
-            </div>
-            <div className="text-right">
-              <p className="text-sm font-semibold text-foreground mono">{entry.duration}</p>
-              <p className="text-[10px] text-muted-foreground">{entry.date}</p>
-            </div>
-          </motion.div>
-        ))}
+            </motion.div>
+          ))}
+        </div>
       </motion.div>
     </div>
   );

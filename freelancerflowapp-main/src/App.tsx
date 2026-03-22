@@ -7,6 +7,8 @@ import { AppSidebar } from "@/components/AppSidebar";
 import { CommandPalette } from "@/components/CommandPalette";
 import { AIOrb } from "@/components/AIOrb";
 import { CursorGlow } from "@/components/CursorGlow";
+import { AuthProvider } from "@/contexts/AuthContext";
+
 import Index from "./pages/Index";
 import Projects from "./pages/Projects";
 import Clients from "./pages/Clients";
@@ -15,6 +17,11 @@ import TimeTracking from "./pages/TimeTracking";
 import Invoices from "./pages/Invoices";
 import NotFound from "./pages/NotFound";
 import Login from "./pages/Login";
+import FeaturesPage from "./pages/FeaturesPage";
+import ProjectsInfoPage from "./pages/ProjectsInfoPage";
+import FinanceInfoPage from "./pages/FinanceInfoPage";
+import AICopilotPage from "./pages/AICopilotPage";
+import PricingPage from "./pages/PricingPage";
 
 const queryClient = new QueryClient();
 
@@ -41,23 +48,29 @@ const MainLayout = () => {
       <CommandPalette />
       <AIOrb onClick={() => setIsAIChatOpen(!isAIChatOpen)} />
       <AIChat isOpen={isAIChatOpen} onClose={() => setIsAIChatOpen(false)} />
-      <CursorGlow />
     </div>
   );
 };
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
-      <Toaster />
-      <Sonner />
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Login />} />
-          <Route path="/*" element={<MainLayout />} />
-        </Routes>
-      </BrowserRouter>
-    </TooltipProvider>
+    <AuthProvider>
+      <TooltipProvider>
+        <Toaster />
+        <Sonner />
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<Login />} />
+            <Route path="/features" element={<FeaturesPage />} />
+            <Route path="/projects-info" element={<ProjectsInfoPage />} />
+            <Route path="/finance-info" element={<FinanceInfoPage />} />
+            <Route path="/ai-copilot" element={<AICopilotPage />} />
+            <Route path="/*" element={<MainLayout />} />
+          </Routes>
+          <CursorGlow />
+        </BrowserRouter>
+      </TooltipProvider>
+    </AuthProvider>
   </QueryClientProvider>
 );
 

@@ -1,0 +1,8 @@
+[
+  { "id": "1", "name": "Landing Page Redesign", "client": "Nova Labs", "status": "In Progress", "progress": 72, "deadline": "Mar 22", "budget": "$4,500" },
+  { "id": "2", "name": "Mobile App UI", "client": "FinEdge", "status": "In Progress", "progress": 45, "deadline": "Apr 10", "budget": "$8,200" },
+  { "id": "3", "name": "Brand Guidelines", "client": "CreativeX", "status": "Review", "progress": 90, "deadline": "Mar 20", "budget": "$2,800" },
+  { "id": "4", "name": "E-commerce Checkout", "client": "ShopFlow", "status": "Done", "progress": 100, "deadline": "Mar 15", "budget": "$6,100" },
+  { "id": "5", "name": "Dashboard Analytics", "client": "Acme Corp", "status": "In Progress", "progress": 30, "deadline": "Apr 5", "budget": "$5,400" },
+  { "id": "6", "name": "API Documentation", "client": "TechStart", "status": "To Do", "progress": 0, "deadline": "Apr 15", "budget": "$1,900" }
+]

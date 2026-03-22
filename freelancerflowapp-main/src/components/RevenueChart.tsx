@@ -52,12 +52,15 @@ export const RevenueChart = () => {
             <YAxis hide />
             <Tooltip
               contentStyle={{
-                background: "hsl(240, 6%, 10%)",
+                background: "rgba(12, 12, 12, 0.8)",
+                backdropFilter: "blur(16px)",
                 border: "1px solid rgba(255,255,255,0.1)",
                 borderRadius: "12px",
                 fontSize: "12px",
-                color: "hsl(0, 0%, 95%)",
+                color: "white",
               }}
+              itemStyle={{ color: "white" }}
+              labelStyle={{ color: "rgba(255,255,255,0.5)", fontWeight: "600", marginBottom: "4px" }}
             />
             <Area type="monotone" dataKey="revenue" stroke="hsl(263, 70%, 66%)" fill="url(#revGrad)" strokeWidth={2} />
             <Area type="monotone" dataKey="expenses" stroke="hsl(187, 92%, 55%)" fill="url(#expGrad)" strokeWidth={2} />

@@ -1,0 +1,33 @@
+[
+  {
+    "id": "INV-001",
+    "clientId": "client_1",
+    "clientName": "Nova Labs",
+    "projectId": "proj_1",
+    "projectName": "Landing Page Redesign",
+    "invoiceNumber": "INV-001",
+    "totalAmount": 4500,
+    "status": "Paid",
+    "date": "2026-03-10",
+    "dueDate": "2026-03-31",
+    "items": [
+      { "name": "Design Phase", "quantity": 1, "rate": 2000, "total": 2000 },
+      { "name": "Development Phase", "quantity": 1, "rate": 2500, "total": 2500 }
+    ],
+    "notes": "Thank you for your business!"
+  },
+  {
+    "id": "INV-002",
+    "clientId": "client_2",
+    "clientName": "FinEdge",
+    "projectId": "proj_2",
+    "projectName": "Mobile App UI",
+    "totalAmount": 3200,
+    "status": "Pending",
+    "date": "2026-03-15",
+    "dueDate": "2026-04-15",
+    "items": [
+      { "name": "UI Design", "quantity": 40, "rate": 80, "total": 3200 }
+    ]
+  }
+]

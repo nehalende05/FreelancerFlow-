@@ -50,30 +50,35 @@ export const AIChat = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => vo
           initial={{ opacity: 0, y: 20, scale: 0.95 }}
           animate={{ opacity: 1, y: 0, scale: 1 }}
           exit={{ opacity: 0, y: 20, scale: 0.95 }}
-          className="fixed bottom-28 right-8 z-[60] w-80 h-96 glass-card rounded-2xl flex flex-col shadow-2xl overflow-hidden border border-primary/20"
+          className="fixed bottom-28 right-8 z-[60] w-80 h-[450px] bg-zinc-950 rounded-3xl flex flex-col shadow-[0_24px_48px_-12px_rgba(0,0,0,1)] overflow-hidden border border-white/10"
         >
-          <div className="p-4 border-b border-border/50 flex items-center justify-between bg-primary/5">
-            <h3 className="text-sm font-semibold flex items-center gap-2">
-              <div className="h-2 w-2 rounded-full bg-primary animate-pulse" />
+          <div className="p-5 border-b border-white/5 flex items-center justify-between bg-white/[0.02]">
+            <h3 className="text-sm font-semibold flex items-center gap-2 text-white">
+              <div className="h-2 w-2 rounded-full bg-white animate-pulse shadow-[0_0_8px_white]" />
               AI Copilot
             </h3>
-            <Button variant="ghost" size="icon" className="h-8 w-8" onClick={onClose}>
+            <Button variant="ghost" size="icon" className="h-8 w-8 text-white/40 hover:text-white hover:bg-white/5 rounded-full" onClick={onClose}>
               <X className="h-4 w-4" />
             </Button>
           </div>
 
-          <div className="flex-1 overflow-y-auto p-4 space-y-4">
+          <div className="flex-1 overflow-y-auto p-5 space-y-4 scrollbar-none">
             {messages.length === 0 && (
-              <div className="text-center text-xs text-muted-foreground mt-10">
-                Ask me anything about your freelance flow.
+              <div className="text-center py-10">
+                <div className="h-12 w-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center mx-auto mb-4">
+                  <Loader2 className="h-6 w-6 text-white/20" />
+                </div>
+                <p className="text-xs text-white/40 font-light italic px-8">
+                  Ask me anything about your projects, clients, or financial status.
+                </p>
               </div>
             )}
             {messages.map((msg, i) => (
               <div key={i} className={`flex ${msg.role === "user" ? "justify-end" : "justify-start"}`}>
-                <div className={`max-w-[80%] p-2.5 rounded-2xl text-xs ${
+                <div className={`max-w-[85%] px-4 py-3 rounded-2xl text-[13px] leading-relaxed ${
                   msg.role === "user" 
-                    ? "bg-primary text-primary-foreground rounded-tr-none" 
-                    : "bg-secondary text-foreground rounded-tl-none border border-border/50"
+                    ? "bg-white text-black font-medium rounded-tr-none" 
+                    : "bg-white/5 text-white/80 rounded-tl-none border border-white/10"
                 }`}>
                   {msg.role === "ai" ? (
                     <div className="prose prose-invert prose-xs max-w-none">
@@ -87,25 +92,29 @@ export const AIChat = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => vo
             ))}
             {isLoading && (
               <div className="flex justify-start">
-                <div className="bg-secondary p-2.5 rounded-2xl flex items-center gap-2">
-                  <Loader2 className="h-3 w-3 animate-spin text-primary" />
-                  <span className="text-[10px] text-muted-foreground">Thinking...</span>
+                <div className="bg-white/5 border border-white/10 px-4 py-3 rounded-2xl rounded-tl-none flex items-center gap-2">
+                  <Loader2 className="h-3 w-3 animate-spin text-white/40" />
+                  <span className="text-[10px] text-white/40 italic">Thinking...</span>
                 </div>
               </div>
             )}
           </div>
 
-          <div className="p-4 border-t border-border/50 bg-background/50">
+          <div className="p-4 border-t border-white/5 bg-white/[0.01]">
             <form onSubmit={(e) => { e.preventDefault(); handleSend(); }} className="flex gap-2">
-              <Input
+              <input
                 placeholder="Message Gemini..."
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
-                className="h-9 text-xs bg-secondary/50 border-border/50"
+                className="flex-1 h-10 px-4 bg-white/5 border border-white/10 rounded-full text-xs text-white placeholder:text-white/20 outline-none focus:border-white/20 focus:bg-white/10 transition-all"
               />
-              <Button type="submit" size="icon" className="h-9 w-9 shrink-0" disabled={isLoading}>
+              <button 
+                type="submit" 
+                disabled={isLoading}
+                className="h-10 w-10 flex items-center justify-center rounded-full bg-white text-black hover:bg-white/90 disabled:opacity-50 transition-all"
+              >
                 <Send className="h-4 w-4" />
-              </Button>
+              </button>
             </form>
           </div>
         </motion.div>

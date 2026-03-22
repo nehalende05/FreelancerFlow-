@@ -6,52 +6,45 @@
 
 @layer base {
   :root {
-    --background: 240 10% 3.9%;
-    --foreground: 0 0% 95%;
+    --background: 0 0% 0%; /* True Black #000000 */
+    --foreground: 0 0% 100%; /* Pure White #FFFFFF */
 
-    --card: 240 6% 10%;
-    --card-foreground: 0 0% 95%;
+    --card: 140 10% 4%; /* Very dark olive/gray #090B0A */
+    --card-foreground: 0 0% 100%;
 
-    --popover: 240 6% 10%;
-    --popover-foreground: 0 0% 95%;
+    --popover: 140 10% 4%;
+    --popover-foreground: 0 0% 100%;
 
-    --primary: 263 70% 66%;
-    --primary-foreground: 0 0% 100%;
+    --primary: 0 0% 100%; /* Pure White */
+    --primary-foreground: 0 0% 0%; /* Black */
 
-    --secondary: 240 4% 16%;
-    --secondary-foreground: 0 0% 95%;
+    --secondary: 0 0% 10%; /* Dark gray */
+    --secondary-foreground: 0 0% 100%;
 
-    --muted: 240 4% 16%;
-    --muted-foreground: 240 5% 55%;
+    --muted: 0 0% 15%;
+    --muted-foreground: 0 0% 65%;
 
-    --accent: 187 92% 55%;
-    --accent-foreground: 240 10% 3.9%;
+    --accent: 0 0% 15%;
+    --accent-foreground: 0 0% 100%;
 
-    --destructive: 348 83% 61%;
+    --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 240 4% 16%;
-    --input: 240 4% 16%;
-    --ring: 263 70% 66%;
+    --border: 0 0% 15%;
+    --input: 0 0% 15%;
+    --ring: 0 0% 100%;
 
-    --radius: 0.75rem;
+    --radius: 2rem; /* Huge default radius for main cards */
 
-    --sidebar-background: 240 6% 7%;
-    --sidebar-foreground: 240 5% 65%;
-    --sidebar-primary: 263 70% 66%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 4% 16%;
-    --sidebar-accent-foreground: 0 0% 95%;
-    --sidebar-border: 240 4% 12%;
-    --sidebar-ring: 263 70% 66%;
+    --sidebar-background: 0 0% 0%;
+    --sidebar-foreground: 0 0% 65%;
+    --sidebar-primary: 0 0% 100%;
+    --sidebar-primary-foreground: 0 0% 0%;
+    --sidebar-accent: 0 0% 10%;
+    --sidebar-accent-foreground: 0 0% 100%;
+    --sidebar-border: 0 0% 10%;
+    --sidebar-ring: 0 0% 100%;
 
-    /* Custom tokens */
-    --glass: 240 6% 10%;
-    --glass-border: 0 0% 100%;
-    --glow-violet: 263 70% 66%;
-    --glow-cyan: 187 92% 55%;
-    --glow-rose: 348 83% 61%;
-    --surface-elevated: 240 5% 13%;
     --success: 142 71% 45%;
     --warning: 38 92% 50%;
   }
@@ -60,7 +53,9 @@
 @layer base {
   * {
     @apply border-border;
+    cursor: none !important;
   }
+
 
   body {
     @apply bg-background text-foreground antialiased;
@@ -85,57 +80,46 @@
 }
 
 @layer components {
-  .glass-card {
-    @apply bg-card/50 backdrop-blur-xl rounded-2xl;
-    box-shadow:
-      0 0 0 1px rgba(255, 255, 255, 0.05),
-      inset 0 1px 0 0 rgba(255, 255, 255, 0.05),
-      0 4px 24px -4px rgba(0, 0, 0, 0.4);
+  .glass-panel {
+    @apply relative overflow-hidden rounded-[32px] border border-white/10;
+    background: linear-gradient(180deg, rgba(20,25,22,0.6) 0%, rgba(5,7,6,0.8) 100%);
+    backdrop-filter: blur(24px);
+    box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.05),
+                0 24px 48px -12px rgba(0, 0, 0, 0.8);
   }
 
-  .glass-card-hover {
-    @apply glass-card transition-all duration-200;
-  }
-  .glass-card-hover:hover {
-    box-shadow:
-      0 0 0 1px rgba(139, 92, 246, 0.2),
-      inset 0 1px 0 0 rgba(255, 255, 255, 0.08),
-      0 8px 32px -4px rgba(0, 0, 0, 0.5);
+  .glass-card-premium {
+    @apply relative overflow-hidden rounded-[24px] border border-white/10 bg-white/5 backdrop-blur-md transition-all duration-300;
   }
 
-  .glow-text {
-    @apply bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent;
+  .glass-card-premium:hover {
+    @apply border-white/20 bg-white/10 shadow-[0_0_20px_rgba(255,255,255,0.05)];
   }
 
-  .glow-border {
-    @apply relative;
+  /* Standard Pill Buttons */
+  .btn-pill-primary {
+    @apply h-11 px-6 rounded-full bg-white text-black font-semibold text-sm hover:bg-white/90 active:scale-[0.98] transition-all;
   }
-  .glow-border::before {
-    content: '';
-    @apply absolute inset-0 rounded-2xl;
-    background: linear-gradient(135deg, hsl(var(--glow-violet)), hsl(var(--glow-cyan)));
-    padding: 1px;
-    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-    mask-composite: exclude;
-    -webkit-mask-composite: xor;
-    opacity: 0.3;
-    pointer-events: none;
+
+  .btn-pill-secondary {
+    @apply h-11 px-6 rounded-full bg-white/5 border border-white/10 text-white font-medium text-sm hover:bg-white/10 hover:border-white/20 active:scale-[0.98] transition-all;
+  }
+
+  /* Standard Pill Inputs */
+  .input-pill {
+    @apply h-11 px-5 rounded-full bg-white/5 border border-white/10 text-white text-sm placeholder:text-white/30 outline-none focus:border-white/20 focus:bg-white/10 transition-all;
   }
 
   .stat-value {
-    @apply text-3xl font-bold tracking-tight text-foreground;
+    @apply text-3xl font-semibold tracking-tighter text-white;
   }
 
   .stat-label {
-    @apply text-xs font-medium uppercase tracking-widest text-muted-foreground;
+    @apply text-[10px] font-semibold uppercase tracking-widest text-white/40;
   }
 
   .mono {
     font-family: 'Geist Mono', 'SF Mono', 'Fira Code', monospace;
-  }
-
-  .neon-glow {
-    text-shadow: 0 0 20px hsl(var(--glow-violet) / 0.5);
   }
 }
 

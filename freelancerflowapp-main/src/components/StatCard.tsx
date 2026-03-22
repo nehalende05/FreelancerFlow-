@@ -11,32 +11,33 @@ interface StatCardProps {
   delay?: number;
 }
 
-export const StatCard = ({ label, value, trend, trendUp = true, icon: Icon, accentColor = "from-primary to-accent", delay = 0 }: StatCardProps) => {
+export const StatCard = ({ label, value, trend, trendUp = true, icon: Icon, delay = 0 }: StatCardProps) => {
   return (
     <motion.div
       initial={{ opacity: 0, y: 16 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, delay, ease: [0.16, 1, 0.3, 1] }}
-      whileHover={{ y: -2 }}
-      className="glass-card-hover p-5 relative overflow-hidden group"
+      whileHover={{ y: -4, scale: 1.02 }}
+      className="glass-card-premium p-6 group"
     >
-      {/* Accent glow */}
-      <div className={`absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl ${accentColor} opacity-[0.03] group-hover:opacity-[0.08] rounded-full -translate-y-1/2 translate-x-1/2 transition-opacity duration-300`} />
-
-      <div className="flex items-start justify-between mb-3">
-        <div className="h-9 w-9 rounded-xl bg-secondary flex items-center justify-center">
-          <Icon className="h-4 w-4 text-muted-foreground" />
+      <div className="flex items-start justify-between mb-6">
+        <div className="h-10 w-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center transition-colors group-hover:border-white/20 group-hover:bg-white/10">
+          <Icon className="h-4 w-4 text-white/70 group-hover:text-white transition-colors" />
         </div>
         {trend && (
-          <div className={`flex items-center gap-1 text-xs font-medium ${trendUp ? "text-success" : "text-destructive"}`}>
+          <div className={`flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] font-semibold tracking-wide ${
+            trendUp ? "bg-green-500/10 text-green-400 border border-green-500/20" : "bg-red-500/10 text-red-400 border border-red-500/20"
+          }`}>
             {trendUp ? <TrendingUp className="h-3 w-3" /> : <TrendingDown className="h-3 w-3" />}
             {trend}
           </div>
         )}
       </div>
 
-      <p className="stat-value">{value}</p>
-      <p className="stat-label mt-1">{label}</p>
+      <div className="space-y-1">
+        <p className="stat-value">{value}</p>
+        <p className="stat-label">{label}</p>
+      </div>
     </motion.div>
   );
 };

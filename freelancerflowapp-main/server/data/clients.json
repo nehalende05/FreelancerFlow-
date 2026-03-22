@@ -1,0 +1,80 @@
+[
+  {
+    "id": "1",
+    "name": "Nova Labs",
+    "email": "hello@novalabs.io",
+    "projects": 3,
+    "totalPaid": "$18,400",
+    "rating": "good",
+    "lastContact": "2 days ago",
+    "late_payments": 0,
+    "overdue_invoices": 0,
+    "avg_response_time_days": 1,
+    "completed_projects": 6
+  },
+  {
+    "id": "2",
+    "name": "Acme Corp",
+    "email": "pm@acmecorp.com",
+    "projects": 2,
+    "totalPaid": "$9,200",
+    "rating": "risky",
+    "lastContact": "1 week ago",
+    "late_payments": 3,
+    "overdue_invoices": 1,
+    "avg_response_time_days": 4,
+    "completed_projects": 2
+  },
+  {
+    "id": "3",
+    "name": "FinEdge",
+    "email": "design@finedge.co",
+    "projects": 1,
+    "totalPaid": "$8,200",
+    "rating": "good",
+    "lastContact": "Yesterday",
+    "late_payments": 0,
+    "overdue_invoices": 0,
+    "avg_response_time_days": 2,
+    "completed_projects": 3
+  },
+  {
+    "id": "4",
+    "name": "CreativeX",
+    "email": "team@creativex.io",
+    "projects": 1,
+    "totalPaid": "$2,800",
+    "rating": "good",
+    "lastContact": "3 days ago",
+    "late_payments": 1,
+    "overdue_invoices": 0,
+    "avg_response_time_days": 1,
+    "completed_projects": 1
+  },
+  {
+    "id": "5",
+    "name": "ShopFlow",
+    "email": "dev@shopflow.com",
+    "projects": 1,
+    "totalPaid": "$6,100",
+    "rating": "slow",
+    "lastContact": "5 days ago",
+    "late_payments": 2,
+    "overdue_invoices": 1,
+    "avg_response_time_days": 3,
+    "completed_projects": 1
+  },
+  {
+    "id": "6",
+    "name": "TechStart",
+    "email": "cto@techstart.dev",
+    "projects": 1,
+    "totalPaid": "$1,900",
+    "rating": "good",
+    "lastContact": "Today",
+    "late_payments": 0,
+    "overdue_invoices": 0,
+    "avg_response_time_days": 1,
+    "completed_projects": 1
+  }
+]

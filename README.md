@@ -2,8 +2,8 @@
 ### AI-powered command center for freelancers
 
 Freelancer Flow is a modern full-stack web application that helps freelancers manage their entire workflow — from projects and clients to finances and decisions — in one intelligent platform.
-
-> Stop managing tools. Let AI manage your work.
+top managing tools. Let AI
+> S
 
 ---
 

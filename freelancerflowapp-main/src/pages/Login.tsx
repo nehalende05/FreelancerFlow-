@@ -21,7 +21,7 @@ const ConstellationNode = ({ x, y, label, value, icon: Icon, delay }: any) => (
     style={{ left: x, top: y }}
   >
     <div className="flex flex-col items-end text-right">
-      <span className="text-xs font-semibold">{label}</span>
+      <span className="text-xs font-semibold text-white/70">{label}</span>
       <span className="text-[10px] text-white/40">{value}</span>
     </div>
     <div className="relative flex items-center justify-center w-6 h-6 rounded-full bg-white/5 border border-white/10 backdrop-blur-md">
@@ -60,7 +60,7 @@ const FeaturesPanel = ({ onSignUp }: { onSignUp: () => void }) => (
       ))}
     </div>
     <div className="mt-10 text-center">
-      <button onClick={onSignUp} className="h-11 px-8 bg-white text-black text-sm font-semibold rounded-full hover:bg-white/90 transition-all">
+      <button onClick={onSignUp} className="h-11 px-8 bg-foreground text-background text-sm font-semibold rounded-full hover:opacity-90 transition-all">
         Get Started Free →
       </button>
     </div>
@@ -80,7 +80,7 @@ const ProjectsPanel = ({ onSignUp }: { onSignUp: () => void }) => (
             </li>
           ))}
         </ul>
-        <button onClick={onSignUp} className="h-11 px-8 bg-white text-black text-sm font-semibold rounded-full hover:bg-white/90 transition-all">Start Managing Projects →</button>
+        <button onClick={onSignUp} className="h-11 px-8 bg-foreground text-background text-sm font-semibold rounded-full hover:opacity-90 transition-all">Start Managing Projects →</button>
       </div>
       <div className="flex-1 w-full max-w-md bg-white/5 border border-white/10 rounded-2xl p-6">
         <p className="text-xs text-white/40 uppercase tracking-widest mb-4">Project Pipeline</p>
@@ -119,7 +119,7 @@ const FinancePanel = ({ onSignUp }: { onSignUp: () => void }) => (
             </li>
           ))}
         </ul>
-        <button onClick={onSignUp} className="h-11 px-8 bg-white text-black text-sm font-semibold rounded-full hover:bg-white/90 transition-all">Track My Finances →</button>
+        <button onClick={onSignUp} className="h-11 px-8 bg-foreground text-background text-sm font-semibold rounded-full hover:opacity-90 transition-all">Track My Finances →</button>
       </div>
       <div className="flex-1 w-full max-w-md space-y-4">
         <div className="grid grid-cols-2 gap-3">
@@ -131,7 +131,7 @@ const FinancePanel = ({ onSignUp }: { onSignUp: () => void }) => (
           ].map((s, i) => (
             <motion.div key={s.label} initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: i * 0.1 }}
               className="bg-white/5 border border-white/10 rounded-2xl p-4">
-              <s.icon className={`w-4 h-4 mb-2 ${s.up ? "text-green-400" : "text-red-400"}`} />
+              <s.icon className={`w-4 h-4 mb-2 ${s.up ? "text-emerald-500" : "text-rose-500"}`} />
               <p className="text-xl font-semibold text-white">{s.value}</p>
               <p className="text-xs text-white/40 mt-0.5">{s.label}</p>
             </motion.div>
@@ -143,7 +143,7 @@ const FinancePanel = ({ onSignUp }: { onSignUp: () => void }) => (
             <div key={t.client} className="flex items-center justify-between py-2 border-b border-white/5 last:border-0">
               <span className="text-sm text-white">{t.client}</span>
               <div className="flex items-center gap-2">
-                <span className={`text-xs px-2 py-0.5 rounded-full ${t.paid ? "bg-green-500/10 text-green-400" : "bg-yellow-500/10 text-yellow-400"}`}>{t.paid ? "Paid" : "Pending"}</span>
+                <span className={`text-xs px-2 py-0.5 rounded-full ${t.paid ? "bg-emerald-500/10 text-emerald-400" : "bg-amber-500/10 text-amber-400"}`}>{t.paid ? "Paid" : "Pending"}</span>
                 <span className="text-sm font-medium text-white">{t.amount}</span>
               </div>
             </div>
@@ -174,20 +174,20 @@ const AICopilotPanel = ({ onSignUp }: { onSignUp: () => void }) => {
               </li>
             ))}
           </ul>
-          <button onClick={onSignUp} className="h-11 px-8 bg-white text-black text-sm font-semibold rounded-full hover:bg-white/90 transition-all">Try AI Copilot →</button>
+          <button onClick={onSignUp} className="h-11 px-8 bg-foreground text-background text-sm font-semibold rounded-full hover:opacity-90 transition-all">Try AI Copilot →</button>
         </div>
         <div className="flex-1 w-full max-w-md bg-white/5 border border-white/10 rounded-2xl p-6">
           <div className="flex items-center gap-2 mb-5">
             <div className="h-7 w-7 rounded-full bg-white flex items-center justify-center"><Sparkles className="w-3 h-3 text-black" /></div>
             <span className="text-sm font-medium text-white">AI Copilot</span>
-            <span className="ml-auto text-[10px] px-2 py-0.5 rounded-full bg-green-500/10 text-green-400">Online</span>
+            <span className="ml-auto text-[10px] px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-400">Online</span>
           </div>
           <div className="space-y-3">
             {chatMessages.map((msg, i) => (
               <motion.div key={i} initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 + i * 0.15 }}
                 className={`flex ${msg.role === "user" ? "justify-end" : "justify-start"}`}>
                 <div className={`max-w-[85%] px-4 py-3 rounded-2xl text-xs leading-relaxed whitespace-pre-line ${
-                  msg.role === "user" ? "bg-white text-black" : "bg-white/10 text-white/80 border border-white/10"
+                  msg.role === "user" ? "bg-white text-black" : "bg-white/10 text-white/80 border border-white/10 shadow-sm"
                 }`}>{msg.text}</div>
               </motion.div>
             ))}
@@ -252,220 +252,222 @@ const Login = () => {
   const openSignUp = () => { setActivePanel(null); setIsSignUp(true); setShowAuth(true); };
 
   return (
-    <div className="min-h-screen bg-black flex items-center justify-center p-4 sm:p-6 lg:p-8 font-sans selection:bg-white/30">
-      
-      {/* Massive Central Glass Panel */}
-      <div className="glass-panel w-full max-w-[1400px] min-h-[calc(100vh-4rem)] flex flex-col relative overflow-hidden">
+    <div className="dark">
+      <div className="min-h-screen bg-black flex items-center justify-center p-4 sm:p-6 lg:p-8 font-sans selection:bg-white/10">
         
-        {/* Top Navigation */}
-        <nav className="flex items-center justify-between p-6 relative z-20">
-          <div
-            className="flex items-center gap-2 cursor-pointer"
-            onClick={() => setActivePanel(null)}
-          >
-            <Logo size={32} color="white" className="drop-shadow-[0_0_8px_rgba(255,255,255,0.3)]" />
-            <span className="text-sm font-semibold text-white hidden sm:block">Freelancer Flow</span>
-          </div>
-
-          <div className="hidden md:flex items-center gap-1 bg-white/5 border border-white/10 rounded-full px-2 py-1.5 backdrop-blur-md">
-            <button
-              onClick={() => setActivePanel(null)}
-              className={`px-4 py-1.5 text-xs font-medium rounded-full transition-colors ${!activePanel ? "bg-white text-black" : "text-white/70 hover:text-white hover:bg-white/10"}`}
-            >
-              Home
-            </button>
-            {navLinks.map((item) => (
-              <button
-                key={item.label}
-                onClick={() => setActivePanel(item.panel)}
-                className={`px-4 py-1.5 text-xs font-medium rounded-full transition-colors ${
-                  activePanel === item.panel ? "bg-white text-black" : "text-white/70 hover:text-white hover:bg-white/10"
-                }`}
-              >
-                {item.label}
-              </button>
-            ))}
-          </div>
-
-          <div className="flex items-center gap-3">
-            <button
-              onClick={() => { setShowAuth(true); setIsSignUp(false); setActivePanel(null); }}
-              className="hidden sm:flex items-center gap-2 px-4 py-2 rounded-full border border-white/10 bg-white/5 text-xs font-medium text-white hover:bg-white/10 transition-colors"
-            >
-              Sign In
-            </button>
-            <button
-              onClick={openSignUp}
-              className="flex items-center gap-2 px-4 py-2 rounded-full bg-white text-black text-xs font-semibold hover:bg-white/90 transition-colors"
-            >
-              <User className="w-3 h-3" /> Get Started
-            </button>
-          </div>
-        </nav>
-
-        {/* Main Content Area */}
-        <div className="flex-1 relative overflow-hidden">
+        {/* Massive Central Glass Panel */}
+        <div className="glass-panel w-full max-w-[1400px] min-h-[calc(100vh-4rem)] flex flex-col relative overflow-hidden text-white">
           
-          {/* Constellation BG */}
-          <div className="absolute inset-0 pointer-events-none overflow-hidden rounded-3xl z-0">
-            <svg className="absolute inset-0 w-full h-full opacity-20" xmlns="http://www.w3.org/2000/svg">
-              <path d="M 250 300 Q 400 300 500 450" fill="none" stroke="white" strokeWidth="1" strokeDasharray="4 4" />
-              <path d="M 1000 250 Q 800 250 700 450" fill="none" stroke="white" strokeWidth="1" strokeDasharray="4 4" />
-              <path d="M 200 600 Q 400 600 500 450" fill="none" stroke="white" strokeWidth="1" strokeDasharray="4 4" />
-            </svg>
-            <ConstellationNode x="20%" y="35%" label="Projects" value="Active: 4" icon={Triangle} delay={0.2} />
-            <ConstellationNode x="75%" y="30%" label="Clients" value="Total: 12" icon={Hexagon} delay={0.4} />
-            <ConstellationNode x="15%" y="65%" label="Invoices" value="$12.4k" icon={Circle} delay={0.6} />
-            <ConstellationNode x="80%" y="60%" label="Analytics" value="Updated" icon={Zap} delay={0.8} />
-          </div>
-
-          {/* Hero Content — always rendered, dimmed when a panel is active */}
-          <motion.div
-            animate={{ opacity: activePanel ? 0.15 : 1 }}
-            transition={{ duration: 0.3 }}
-            className="relative z-10 flex flex-col"
-          >
-            <div className="w-full overflow-y-auto pb-24 px-6">
-              <div className="max-w-4xl mx-auto text-center pt-20">
-                <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-white/10 bg-white/5 text-xs font-medium text-white/80 mb-8 backdrop-blur-md">
-                  <Logo size={14} color="white" /> The AI-powered command center for freelancers <ArrowRight className="w-3 h-3" />
-                </div>
-                <h1 className="text-4xl sm:text-5xl md:text-6xl font-semibold tracking-tight text-white mb-6 leading-tight">
-                  Manage Your Freelance Business <br className="hidden sm:block" />
-                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-gray-200 to-gray-500">— Without the Chaos</span>
-                </h1>
-                <p className="text-base sm:text-lg text-white/50 mb-10 max-w-2xl mx-auto font-light">
-                  Freelancer Flow turns chaos into clarity — projects, clients, deadlines, all automated seamlessly in one intelligent workspace.
-                </p>
-                <Button
-                  onClick={() => { setShowAuth(true); setIsSignUp(true); }}
-                  className="group relative h-12 px-8 text-sm font-medium bg-white text-black rounded-full overflow-hidden hover:scale-105 transition-all duration-300 shadow-[0_0_40px_-10px_rgba(255,255,255,0.8)]"
-                >
-                  <span className="relative z-10 flex items-center">
-                    Get Started <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
-                  </span>
-                  <div className="absolute inset-0 bg-white group-hover:bg-gray-200 transition-colors z-0" />
-                </Button>
-              </div>
-
-              {/* Feature Cards */}
-              <div className="w-full max-w-6xl mx-auto mt-32">
-                <div className="text-center mb-10">
-                  <h2 className="text-2xl md:text-3xl font-semibold text-white mb-3">Everything You Need</h2>
-                  <p className="text-white/40 text-sm">Click a card or use the nav above to explore each feature.</p>
-                </div>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-16">
-                  {[
-                    { icon: FolderKanban, title: "Project Management", panel: "projects" as PanelId, desc: "Organize tasks, track progress, and meet deadlines effortlessly." },
-                    { icon: Users, title: "Client Management", panel: "features" as PanelId, desc: "Keep track of clients, communication, and payment history." },
-                    { icon: DollarSign, title: "Smart Finance", panel: "finance" as PanelId, desc: "Monitor earnings, expenses, and profits in real time." },
-                    { icon: Sparkles, title: "AI Assistant", panel: "ai-copilot" as PanelId, desc: "Get smart suggestions, task planning, and productivity insights." },
-                  ].map((f) => (
-                    <button
-                      key={f.title}
-                      onClick={() => setActivePanel(f.panel)}
-                      className="bg-white/5 border border-white/10 rounded-3xl p-6 text-left hover:bg-white/10 hover:border-white/20 transition-all group cursor-pointer"
-                    >
-                      <div className="h-12 w-12 rounded-full bg-white/10 flex items-center justify-center mb-5 group-hover:scale-110 transition-transform">
-                        <f.icon className="w-5 h-5 text-white" />
-                      </div>
-                      <h3 className="text-base font-medium text-white mb-2">{f.title}</h3>
-                      <p className="text-sm text-white/50 leading-relaxed">{f.desc}</p>
-                      <span className="text-xs text-white/30 mt-3 flex items-center gap-1">Learn more <ArrowRight className="w-3 h-3" /></span>
-                    </button>
-                  ))}
-                </div>
-                <div className="flex flex-wrap justify-center items-center gap-8 opacity-30 grayscale pb-8">
-                  {['Upwork', 'Fiverr', 'Stripe', 'PayPal', 'Slack', 'Notion', 'Asana'].map((brand) => (
-                    <div key={brand} className="text-sm font-bold tracking-widest text-white">{brand}</div>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </motion.div>
-
-          {/* Overlay Panel */}
-          <AnimatePresence>
-            {activePanel && (
-              <motion.div
-                key={activePanel}
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: 30 }}
-                transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-                className="absolute inset-0 z-20 bg-black/70 backdrop-blur-xl rounded-b-[32px] overflow-hidden"
-              >
-                <button
-                  onClick={() => setActivePanel(null)}
-                  className="absolute top-5 right-5 z-30 h-9 w-9 rounded-full bg-white/10 border border-white/10 flex items-center justify-center text-white hover:bg-white/20 transition-colors"
-                >
-                  <X className="w-4 h-4" />
-                </button>
-
-                {activePanel === "features" && <FeaturesPanel onSignUp={openSignUp} />}
-                {activePanel === "projects" && <ProjectsPanel onSignUp={openSignUp} />}
-                {activePanel === "finance" && <FinancePanel onSignUp={openSignUp} />}
-                {activePanel === "ai-copilot" && <AICopilotPanel onSignUp={openSignUp} />}
-              </motion.div>
-            )}
-          </AnimatePresence>
-        </div>
-      </div>
-
-      {/* Auth Modal */}
-      <AnimatePresence>
-        {showAuth && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm p-4"
-          >
-            <motion.div
-              initial={{ scale: 0.95, y: 20 }}
-              animate={{ scale: 1, y: 0 }}
-              exit={{ scale: 0.95, y: 20 }}
-              className="w-full max-w-md bg-zinc-950 border border-white/10 rounded-3xl p-8 shadow-2xl relative"
+          {/* Top Navigation */}
+          <nav className="flex items-center justify-between p-6 relative z-20">
+            <div
+              className="flex items-center gap-2 cursor-pointer"
+              onClick={() => setActivePanel(null)}
             >
-              <button onClick={() => setShowAuth(false)} className="absolute top-4 right-4 p-2 text-white/50 hover:text-white transition-colors">
-                <X className="w-4 h-4" />
+              <Logo size={32} color="currentColor" className="text-white drop-shadow-[0_0_8px_rgba(255,255,255,0.3)]" />
+              <span className="text-sm font-semibold text-white hidden sm:block">Freelancer Flow</span>
+            </div>
+
+            <div className="hidden md:flex items-center gap-1 bg-white/5 border border-white/10 rounded-full px-2 py-1.5 backdrop-blur-md">
+              <button
+                onClick={() => setActivePanel(null)}
+                className={`px-4 py-1.5 text-xs font-medium rounded-full transition-colors ${!activePanel ? "bg-white text-black" : "text-white/50 hover:text-white hover:bg-white/10"}`}
+              >
+                Home
               </button>
-              <div className="text-center mb-8">
-                <h2 className="text-2xl font-semibold text-white mb-2">{isSignUp ? "Create Account" : "Welcome Back"}</h2>
-                <p className="text-sm text-white/50">{isSignUp ? "Enter your details to get started" : "Enter your credentials to access your dashboard"}</p>
-              </div>
-              <form onSubmit={handleSubmit} className="space-y-4">
-                {isSignUp && (
-                  <motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: "auto" }}>
-                    <Input 
-                      placeholder="Full name" 
-                      value={name}
-                      onChange={(e) => setName(e.target.value)}
-                      required
-                      className="bg-white/5 border-white/10 h-12 text-white placeholder:text-white/30" 
-                    />
-                  </motion.div>
-                )}
-                <Input type="email" placeholder="Email address" value={email} onChange={(e) => setEmail(e.target.value)} className="bg-white/5 border-white/10 h-12 text-white placeholder:text-white/30" />
-                <div className="relative">
-                  <Input type={showPassword ? "text" : "password"} placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} className="bg-white/5 border-white/10 h-12 text-white placeholder:text-white/30 pr-10" />
-                  <button type="button" onClick={() => setShowPassword(!showPassword)} className="absolute right-4 top-1/2 -translate-y-1/2 text-white/40 hover:text-white transition-colors">
-                    {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
-                  </button>
-                </div>
-                <Button type="submit" disabled={isLoading} className="w-full h-12 bg-white text-black font-medium text-sm mt-4">
-                  {isLoading ? "Processing..." : isSignUp ? "Create Account" : "Sign In"}
-                </Button>
-              </form>
-              <div className="mt-6 text-center">
-                <button onClick={() => setIsSignUp(!isSignUp)} className="text-sm text-white/50 hover:text-white transition-colors">
-                  {isSignUp ? "Already have an account? Sign in" : "Don't have an account? Sign up"}
+              {navLinks.map((item) => (
+                <button
+                  key={item.label}
+                  onClick={() => setActivePanel(item.panel)}
+                  className={`px-4 py-1.5 text-xs font-medium rounded-full transition-colors ${
+                    activePanel === item.panel ? "bg-white text-black" : "text-white/50 hover:text-white hover:bg-white/10"
+                  }`}
+                >
+                  {item.label}
                 </button>
+              ))}
+            </div>
+
+            <div className="flex items-center gap-3">
+              <button
+                onClick={() => { setShowAuth(true); setIsSignUp(false); setActivePanel(null); }}
+                className="hidden sm:flex items-center gap-2 px-4 py-2 rounded-full border border-white/10 bg-white/5 text-xs font-medium text-white hover:bg-white/10 transition-colors"
+              >
+                Sign In
+              </button>
+              <button
+                onClick={openSignUp}
+                className="flex items-center gap-2 px-4 py-2 rounded-full bg-white text-black text-xs font-semibold hover:opacity-90 transition-colors"
+              >
+                <User className="w-3 h-3" /> Get Started
+              </button>
+            </div>
+          </nav>
+
+          {/* Main Content Area */}
+          <div className="flex-1 relative overflow-hidden">
+            
+            {/* Constellation BG */}
+            <div className="absolute inset-0 pointer-events-none overflow-hidden rounded-3xl z-0">
+              <svg className="absolute inset-0 w-full h-full opacity-20" xmlns="http://www.w3.org/2000/svg">
+                <path d="M 250 300 Q 400 300 500 450" fill="none" stroke="currentColor" strokeWidth="1" strokeDasharray="4 4" className="text-white/20" />
+                <path d="M 1000 250 Q 800 250 700 450" fill="none" stroke="currentColor" strokeWidth="1" strokeDasharray="4 4" className="text-white/20" />
+                <path d="M 200 600 Q 400 600 500 450" fill="none" stroke="currentColor" strokeWidth="1" strokeDasharray="4 4" className="text-white/20" />
+              </svg>
+              <ConstellationNode x="20%" y="35%" label="Projects" value="Active: 4" icon={Triangle} delay={0.2} />
+              <ConstellationNode x="75%" y="30%" label="Clients" value="Total: 12" icon={Hexagon} delay={0.4} />
+              <ConstellationNode x="15%" y="65%" label="Invoices" value="$12.4k" icon={Circle} delay={0.6} />
+              <ConstellationNode x="80%" y="60%" label="Analytics" value="Updated" icon={Zap} delay={0.8} />
+            </div>
+
+            {/* Hero Content — always rendered, dimmed when a panel is active */}
+            <motion.div
+              animate={{ opacity: activePanel ? 0.15 : 1 }}
+              transition={{ duration: 0.3 }}
+              className="relative z-10 flex flex-col"
+            >
+              <div className="w-full overflow-y-auto pb-24 px-6">
+                <div className="max-w-4xl mx-auto text-center pt-20">
+                  <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-white/10 bg-white/5 text-xs font-medium text-white/80 mb-8 backdrop-blur-md">
+                    <Logo size={14} color="currentColor" /> The AI-powered command center for freelancers <ArrowRight className="w-3 h-3" />
+                  </div>
+                  <h1 className="text-4xl sm:text-5xl md:text-6xl font-semibold tracking-tight text-white mb-6 leading-tight">
+                    Manage Your Freelance Business <br className="hidden sm:block" />
+                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-white/80 to-white/30">— Without the Chaos</span>
+                  </h1>
+                  <p className="text-base sm:text-lg text-white/50 mb-10 max-w-2xl mx-auto font-light italic">
+                    Freelancer Flow turns chaos into clarity — projects, clients, deadlines, all automated seamlessly in one intelligent workspace.
+                  </p>
+                  <Button
+                    onClick={() => { setShowAuth(true); setIsSignUp(true); }}
+                    className="group relative h-12 px-8 text-sm font-medium bg-white text-black rounded-full overflow-hidden hover:scale-105 transition-all duration-300 shadow-xl"
+                  >
+                    <span className="relative z-10 flex items-center">
+                      Get Started <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
+                    </span>
+                    <div className="absolute inset-0 bg-white/90 transition-colors z-0" />
+                  </Button>
+                </div>
+
+                {/* Feature Cards */}
+                <div className="w-full max-w-6xl mx-auto mt-32">
+                  <div className="text-center mb-10">
+                    <h2 className="text-2xl md:text-3xl font-semibold text-white mb-3">Everything You Need</h2>
+                    <p className="text-white/40 text-sm italic">Click a card or use the nav above to explore each feature.</p>
+                  </div>
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-16">
+                    {[
+                      { icon: FolderKanban, title: "Project Management", panel: "projects" as PanelId, desc: "Organize tasks, track progress, and meet deadlines effortlessly." },
+                      { icon: Users, title: "Client Management", panel: "features" as PanelId, desc: "Keep track of clients, communication, and payment history." },
+                      { icon: DollarSign, title: "Smart Finance", panel: "finance" as PanelId, desc: "Monitor earnings, expenses, and profits in real time." },
+                      { icon: Sparkles, title: "AI Assistant", panel: "ai-copilot" as PanelId, desc: "Get smart suggestions, task planning, and productivity insights." },
+                    ].map((f) => (
+                      <button
+                        key={f.title}
+                        onClick={() => setActivePanel(f.panel)}
+                        className="bg-white/5 border border-white/10 rounded-3xl p-6 text-left hover:bg-white/10 hover:border-white/20 transition-all group cursor-pointer"
+                      >
+                        <div className="h-12 w-12 rounded-full bg-white/10 flex items-center justify-center mb-5 group-hover:scale-110 transition-transform">
+                          <f.icon className="w-5 h-5 text-white" />
+                        </div>
+                        <h3 className="text-base font-medium text-white mb-2">{f.title}</h3>
+                        <p className="text-sm text-white/50 leading-relaxed">{f.desc}</p>
+                        <span className="text-xs text-white/30 mt-3 flex items-center gap-1">Learn more <ArrowRight className="w-3 h-3" /></span>
+                      </button>
+                    ))}
+                  </div>
+                  <div className="flex flex-wrap justify-center items-center gap-8 opacity-30 grayscale pb-8">
+                    {['Upwork', 'Fiverr', 'Stripe', 'PayPal', 'Slack', 'Notion', 'Asana'].map((brand) => (
+                      <div key={brand} className="text-sm font-bold tracking-widest text-white">{brand}</div>
+                    ))}
+                  </div>
+                </div>
               </div>
             </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+
+            {/* Overlay Panel */}
+            <AnimatePresence>
+              {activePanel && (
+                <motion.div
+                  key={activePanel}
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: 30 }}
+                  transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+                  className="absolute inset-0 z-20 bg-black/70 backdrop-blur-xl rounded-b-[32px] overflow-hidden"
+                >
+                  <button
+                    onClick={() => setActivePanel(null)}
+                    className="absolute top-5 right-5 z-30 h-9 w-9 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white hover:bg-white/20 transition-colors"
+                  >
+                    <X className="w-4 h-4" />
+                  </button>
+
+                  {activePanel === "features" && <FeaturesPanel onSignUp={openSignUp} />}
+                  {activePanel === "projects" && <ProjectsPanel onSignUp={openSignUp} />}
+                  {activePanel === "finance" && <FinancePanel onSignUp={openSignUp} />}
+                  {activePanel === "ai-copilot" && <AICopilotPanel onSignUp={openSignUp} />}
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
+        </div>
+
+        {/* Auth Modal */}
+        <AnimatePresence>
+          {showAuth && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm p-4"
+            >
+              <motion.div
+                initial={{ scale: 0.95, y: 20 }}
+                animate={{ scale: 1, y: 0 }}
+                exit={{ scale: 0.95, y: 20 }}
+              className="w-full max-w-md bg-[#050505] border border-white/10 rounded-3xl p-8 shadow-2xl relative"
+              >
+                <button onClick={() => setShowAuth(false)} className="p-2 text-white/20 hover:text-white transition-colors">
+                  <X className="w-4 h-4" />
+                </button>
+                <div className="text-center mb-8">
+                  <h2 className="text-2xl font-semibold text-white mb-2">{isSignUp ? "Create Account" : "Welcome Back"}</h2>
+                  <p className="text-sm text-white/50">{isSignUp ? "Enter your details to get started" : "Enter your credentials to access your dashboard"}</p>
+                </div>
+                <form onSubmit={handleSubmit} className="space-y-4">
+                  {isSignUp && (
+                    <motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: "auto" }}>
+                      <Input 
+                        placeholder="Full name" 
+                        value={name}
+                        onChange={(e) => setName(e.target.value)}
+                        required
+                        className="bg-white/5 border-white/10 h-12 text-white placeholder:text-white/30" 
+                      />
+                    </motion.div>
+                  )}
+                  <Input type="email" placeholder="Email address" value={email} onChange={(e) => setEmail(e.target.value)} className="bg-white/5 border-white/10 h-12 text-white placeholder:text-white/30" />
+                  <div className="relative">
+                    <Input type={showPassword ? "text" : "password"} placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} className="bg-white/5 border-white/10 h-12 text-white placeholder:text-white/30 pr-10" />
+                    <button type="button" onClick={() => setShowPassword(!showPassword)} className="absolute right-4 top-1/2 -translate-y-1/2 text-white/40 hover:text-white transition-colors">
+                      {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+                    </button>
+                  </div>
+                  <Button type="submit" disabled={isLoading} className="w-full h-12 bg-white text-black font-medium text-sm mt-4 hover:opacity-90 transition-opacity shadow-md">
+                    {isLoading ? "Processing..." : isSignUp ? "Create Account" : "Sign In"}
+                  </Button>
+                </form>
+                <div className="mt-6 text-center">
+                  <button onClick={() => setIsSignUp(!isSignUp)} className="text-sm text-white/50 hover:text-white transition-colors italics font-light">
+                    {isSignUp ? "Already have an account? Sign in" : "Don't have an account? Sign up"}
+                  </button>
+                </div>
+              </motion.div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </div>
     </div>
   );
 };

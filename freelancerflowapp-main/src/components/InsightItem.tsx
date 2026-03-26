@@ -33,8 +33,8 @@ export const InsightItem = ({ type, text, delay = 0 }: InsightItemProps) => {
       transition={{ duration: 0.4, delay, ease: [0.16, 1, 0.3, 1] }}
       className="flex items-start gap-3.5 p-4 rounded-2xl bg-white/[0.03] border border-white/[0.05] hover:border-white/10 hover:bg-white/[0.06] transition-all group"
     >
-      <div className={`h-1.5 w-1.5 rounded-full ${typeMarkers[type]} mt-1.5 shrink-0 shadow-[0_0_8px_rgba(255,255,255,0.2)]`} />
-      <p className="text-xs text-white/60 leading-relaxed font-light group-hover:text-white/80 transition-colors uppercase tracking-tight">{text}</p>
+      <div className={`h-1.5 w-1.5 rounded-full ${typeMarkers[type]} mt-1.5 shrink-0 shadow-sm`} />
+      <p className="text-xs text-muted-foreground leading-relaxed font-light group-hover:text-foreground transition-colors uppercase tracking-tight">{text}</p>
     </motion.div>
   );
 };

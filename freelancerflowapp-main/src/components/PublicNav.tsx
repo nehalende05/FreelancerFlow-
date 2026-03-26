@@ -21,7 +21,7 @@ export const PublicNav = () => {
         className="flex items-center gap-2 cursor-pointer"
         onClick={() => navigate("/")}
       >
-        <Logo size={32} color="white" className="drop-shadow-[0_0_8px_rgba(255,255,255,0.3)]" />
+        <Logo size={32} color="currentColor" className="text-white drop-shadow-[0_0_8px_rgba(255,255,255,0.3)]" />
         <span className="text-sm font-semibold text-white hidden sm:block">
           Freelancer Flow
         </span>
@@ -37,7 +37,7 @@ export const PublicNav = () => {
               className={`px-4 py-1.5 text-xs font-medium rounded-full transition-colors ${
                 isActive
                   ? "bg-white text-black"
-                  : "text-white/70 hover:text-white hover:bg-white/10"
+                  : "text-white/50 hover:text-white hover:bg-white/10"
               }`}
             >
               {item.label}
@@ -55,7 +55,7 @@ export const PublicNav = () => {
         </button>
         <button
           onClick={() => navigate("/?signup=true")}
-          className="flex items-center gap-2 px-4 py-2 rounded-full bg-white text-black text-xs font-semibold hover:bg-white/90 transition-colors"
+          className="flex items-center gap-2 px-4 py-2 rounded-full bg-white text-black text-xs font-semibold hover:opacity-90 transition-colors shadow-lg"
         >
           <User className="w-3 h-3" /> Get Started
         </button>

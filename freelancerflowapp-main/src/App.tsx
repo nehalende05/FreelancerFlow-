@@ -8,6 +8,7 @@ import { CommandPalette } from "@/components/CommandPalette";
 import { AIOrb } from "@/components/AIOrb";
 import { CursorGlow } from "@/components/CursorGlow";
 import { AuthProvider } from "@/contexts/AuthContext";
+import { ThemeProvider } from "@/components/ThemeProvider";
 
 import Index from "./pages/Index";
 import Projects from "./pages/Projects";
@@ -54,23 +55,25 @@ const MainLayout = () => {
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
-    <AuthProvider>
-      <TooltipProvider>
-        <Toaster />
-        <Sonner />
-        <BrowserRouter>
-          <Routes>
-            <Route path="/" element={<Login />} />
-            <Route path="/features" element={<FeaturesPage />} />
-            <Route path="/projects-info" element={<ProjectsInfoPage />} />
-            <Route path="/finance-info" element={<FinanceInfoPage />} />
-            <Route path="/ai-copilot" element={<AICopilotPage />} />
-            <Route path="/*" element={<MainLayout />} />
-          </Routes>
-          <CursorGlow />
-        </BrowserRouter>
-      </TooltipProvider>
-    </AuthProvider>
+    <ThemeProvider>
+      <AuthProvider>
+        <TooltipProvider>
+          <Toaster />
+          <Sonner />
+          <BrowserRouter>
+            <Routes>
+              <Route path="/" element={<Login />} />
+              <Route path="/features" element={<FeaturesPage />} />
+              <Route path="/projects-info" element={<ProjectsInfoPage />} />
+              <Route path="/finance-info" element={<FinanceInfoPage />} />
+              <Route path="/ai-copilot" element={<AICopilotPage />} />
+              <Route path="/*" element={<MainLayout />} />
+            </Routes>
+            <CursorGlow />
+          </BrowserRouter>
+        </TooltipProvider>
+      </AuthProvider>
+    </ThemeProvider>
   </QueryClientProvider>
 );
 

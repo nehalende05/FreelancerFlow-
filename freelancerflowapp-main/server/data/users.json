@@ -16,5 +16,23 @@
     "name": "Test User",
     "email": "test@test.com",
     "password": "password123"
+  },
+  {
+    "id": "1774533925887",
+    "name": "jane doe",
+    "email": "jane@die",
+    "password": "password1234"
+  },
+  {
+    "id": "1774537426666",
+    "name": "Test User",
+    "email": "test@example.com",
+    "password": "password123"
+  },
+  {
+    "id": "1774543842448",
+    "name": "Neha",
+    "email": "neha7@gmail.com",
+    "password": "password1234"
   }
 ]

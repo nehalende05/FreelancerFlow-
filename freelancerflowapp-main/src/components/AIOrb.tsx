@@ -24,10 +24,7 @@ export const AIOrb = ({ onClick }: AIOrbProps) => {
           className="absolute inset-0"
         >
           <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-primary to-accent opacity-30 blur-xl group-hover:opacity-60 transition-opacity duration-300" />
-          <div className="absolute inset-0 rounded-full border border-primary/30" style={{
-            borderImage: "linear-gradient(135deg, hsl(var(--glow-violet)), hsl(var(--glow-cyan))) 1",
-            borderRadius: "50%",
-          }} />
+          <div className="absolute inset-0 rounded-full border border-primary/30" />
         </motion.div>
 
         {/* Pulse rings */}
@@ -38,8 +35,7 @@ export const AIOrb = ({ onClick }: AIOrbProps) => {
         />
 
         {/* Core */}
-        <div className="absolute inset-1 bg-background/90 rounded-full backdrop-blur-xl flex items-center justify-center"
-          style={{ boxShadow: "0 0 0 1px rgba(255,255,255,0.1), inset 0 1px 0 rgba(255,255,255,0.05)" }}
+        <div className="absolute inset-1 bg-[#050505]/90 rounded-full backdrop-blur-xl flex items-center justify-center border border-white/10 shadow-lg"
         >
           <motion.div
             animate={isHovered ? { scale: [1, 1.3, 1] } : { scale: 1 }}
@@ -53,7 +49,7 @@ export const AIOrb = ({ onClick }: AIOrbProps) => {
         <motion.div
           initial={{ opacity: 0, y: 4 }}
           animate={isHovered ? { opacity: 1, y: 0 } : { opacity: 0, y: 4 }}
-          className="absolute -top-8 left-1/2 -translate-x-1/2 whitespace-nowrap text-xs text-muted-foreground"
+          className="absolute -top-8 left-1/2 -translate-x-1/2 whitespace-nowrap text-xs text-white/30"
         >
           AI Copilot
         </motion.div>

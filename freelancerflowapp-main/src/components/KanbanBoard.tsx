@@ -71,8 +71,8 @@ export const KanbanBoard = () => {
                 initial={{ opacity: 0, y: 8 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: ci * 0.1 + ti * 0.05 }}
-                whileHover={{ y: -1 }}
-                className="glass-card p-3 cursor-pointer hover:bg-secondary/30 transition-colors"
+                whileHover={{ y: -1, scale: 1.01 }}
+                className="glass-card-premium p-3 cursor-pointer hover:bg-secondary/50 dark:hover:bg-white/5 transition-all border border-border dark:border-white/10 shadow-sm"
               >
                 <p className="text-xs font-medium text-foreground mb-1.5">{task.title}</p>
                 <div className="flex items-center justify-between">

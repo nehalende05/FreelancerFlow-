@@ -27,8 +27,8 @@ const Finance = () => {
   return (
     <div className="p-6 h-screen overflow-y-auto selection:bg-white/20">
       <motion.div initial={{ opacity: 0, y: -12 }} animate={{ opacity: 1, y: 0 }} className="mb-10">
-        <h1 className="text-3xl font-semibold tracking-tighter text-white">Finance</h1>
-        <p className="text-sm text-white/40 font-light mt-1 italic">Real-time health of your freelance operation.</p>
+        <h1 className="text-3xl font-semibold tracking-tighter text-foreground">Finance</h1>
+        <p className="text-sm text-muted-foreground font-light mt-1 italic">Real-time health of your freelance operation.</p>
       </motion.div>
 
       {/* Summary cards */}
@@ -49,7 +49,7 @@ const Finance = () => {
             <p className="stat-label mb-2">{s.label}</p>
             <p className="stat-value">{s.value}</p>
             <div className={`flex items-center gap-1.5 px-2 py-1 rounded-full text-[10px] font-bold mt-4 w-fit border ${
-              s.up ? "bg-emerald-500/10 text-emerald-400 border-emerald-500/20" : "bg-rose-500/10 text-rose-400 border-rose-500/20"
+              s.up ? "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20" : "bg-rose-500/10 text-rose-600 dark:text-rose-400 border-rose-500/20"
             }`}>
               {s.up ? <TrendingUp className="h-3 w-3" /> : <TrendingDown className="h-3 w-3" />}
               {s.trend}
@@ -70,28 +70,28 @@ const Finance = () => {
           <div className="h-64">
             <ResponsiveContainer width="100%" height="100%">
               <BarChart data={monthlyData} barGap={4}>
-                <XAxis dataKey="month" axisLine={false} tickLine={false} tick={{ fontSize: 10, fill: "rgba(255,255,255,0.3)" }} />
+                <XAxis dataKey="month" axisLine={false} tickLine={false} tick={{ fontSize: 10, fill: "var(--muted-foreground)" }} />
                 <Tooltip 
-                  cursor={{ fill: 'rgba(255,255,255,0.03)' }}
+                  cursor={{ fill: 'currentColor', opacity: 0.03 }}
                   contentStyle={{ 
-                    background: "rgba(12, 12, 12, 0.8)", 
+                    background: "var(--popover)", 
                     backdropFilter: "blur(16px)",
-                    border: "1px solid rgba(255,255,255,0.1)", 
+                    border: "1px solid var(--border)", 
                     borderRadius: "16px", 
                     fontSize: "12px", 
-                    color: "white" 
+                    color: "var(--foreground)" 
                   }}
-                  itemStyle={{ color: "white" }}
-                  labelStyle={{ color: "rgba(255,255,255,0.5)", fontWeight: "600", marginBottom: "4px" }}
+                  itemStyle={{ color: "var(--foreground)" }}
+                  labelStyle={{ color: "var(--muted-foreground)", fontWeight: "600", marginBottom: "4px" }}
                 />
                 <Bar dataKey="income" radius={[4, 4, 0, 0]} barSize={16}>
                   {monthlyData.map((_, i) => (
-                    <Cell key={i} fill="white" fillOpacity={0.9} />
+                    <Cell key={i} fill="currentColor" fillOpacity={0.9} className="text-foreground" />
                   ))}
                 </Bar>
                 <Bar dataKey="expense" radius={[4, 4, 0, 0]} barSize={16}>
                   {monthlyData.map((_, i) => (
-                    <Cell key={i} fill="white" fillOpacity={0.15} />
+                    <Cell key={i} fill="currentColor" fillOpacity={0.15} className="text-foreground" />
                   ))}
                 </Bar>
               </BarChart>
@@ -118,16 +118,16 @@ const Finance = () => {
               >
                 <div className="flex items-center gap-4">
                   <div className={`h-10 w-10 rounded-full flex items-center justify-center transition-colors ${
-                    t.type === "income" ? "bg-emerald-500/5 border border-emerald-500/10" : "bg-rose-500/5 border border-rose-500/10"
+                    t.type === "income" ? "bg-emerald-500/10 border border-emerald-500/20" : "bg-rose-500/10 border border-rose-500/20"
                   }`}>
-                    <ArrowUpRight className={`h-4 w-4 ${t.type === "income" ? "text-emerald-400" : "text-rose-400 rotate-180"}`} />
+                    <ArrowUpRight className={`h-4 w-4 ${t.type === "income" ? "text-emerald-600 dark:text-emerald-400" : "text-rose-600 dark:text-rose-400 rotate-180"}`} />
                   </div>
                   <div>
-                    <p className="text-sm font-medium text-white group-hover:text-white transition-colors">{t.desc}</p>
-                    <p className="text-[10px] text-white/30 font-mono italic mt-0.5">{t.date}</p>
+                    <p className="text-sm font-medium text-foreground group-hover:text-primary transition-colors">{t.desc}</p>
+                    <p className="text-[10px] text-muted-foreground/40 font-mono italic mt-0.5">{t.date}</p>
                   </div>
                 </div>
-                <span className={`text-sm font-semibold mono tracking-tight ${t.type === "income" ? "text-emerald-400" : "text-rose-400"}`}>{t.amount}</span>
+                <span className={`text-sm font-semibold mono tracking-tight ${t.type === "income" ? "text-emerald-600 dark:text-emerald-400" : "text-rose-600 dark:text-rose-400"}`}>{t.amount}</span>
               </motion.div>
             ))}
           </div>

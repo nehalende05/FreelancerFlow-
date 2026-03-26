@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Plus, Search, Star, AlertTriangle, CheckCircle, X, Trash2, Shield, Brain, TrendingDown, Info } from "lucide-react";
+import { Plus, Search, Star, AlertTriangle, CheckCircle, X, Trash2, Shield, Brain, TrendingDown, Info, BarChart2 } from "lucide-react";
+import { ClientRiskModal } from "@/components/ClientRiskModal";
 
 interface Client {
   id: number | string;
@@ -63,6 +64,7 @@ const Clients = () => {
   const [search, setSearch] = useState("");
   const [form, setForm] = useState({ name: "", email: "" });
   const [hoveredRisk, setHoveredRisk] = useState<number | string | null>(null);
+  const [riskModalClient, setRiskModalClient] = useState<{ id: string | number; name: string } | null>(null);
 
   // Fetch enriched clients from API (with risk scores)
   useEffect(() => {
@@ -254,6 +256,14 @@ const Clients = () => {
                   <p className="text-[10px] text-white/40 italic mt-0.5">{c.lastContact}</p>
                 </div>
               </div>
+              {/* View Risk Details */}
+              <button
+                onClick={() => setRiskModalClient({ id: c.id, name: c.name })}
+                className={`mt-4 w-full flex items-center justify-center gap-2 py-2.5 rounded-xl bg-white/5 border border-white/10 text-[10px] font-bold uppercase tracking-widest transition-all hover:bg-white/10 hover:scale-[1.01] active:scale-95 ${risk.color}`}
+              >
+                <BarChart2 className="h-3.5 w-3.5" />
+                View Risk Details
+              </button>
             </motion.div>
           );
         })}
@@ -311,8 +321,14 @@ const Clients = () => {
             </motion.div>
           </motion.div>
         )}
-      </AnimatePresence>
-    </div>
+      {/* Risk Details Modal */}
+      <ClientRiskModal
+        isOpen={!!riskModalClient}
+        onClose={() => setRiskModalClient(null)}
+        client={riskModalClient}
+      />
+    </AnimatePresence>
+  </div>
   );
 };
 

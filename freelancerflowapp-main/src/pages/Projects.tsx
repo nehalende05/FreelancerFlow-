@@ -75,8 +75,8 @@ const Projects = () => {
     <div className="p-6 min-h-screen overflow-y-auto selection:bg-white/20">
       <motion.div initial={{ opacity: 0, y: -12 }} animate={{ opacity: 1, y: 0 }} className="flex items-center justify-between mb-8">
         <div>
-          <h1 className="text-3xl font-semibold tracking-tighter text-white">Projects</h1>
-          <p className="text-sm text-white/40 font-light mt-1 italic">Real-time tracking of your active missions.</p>
+          <h1 className="text-3xl font-semibold tracking-tighter text-foreground">Projects</h1>
+          <p className="text-sm text-muted-foreground font-light mt-1 italic">Real-time tracking of your active missions.</p>
         </div>
         <motion.button
           whileTap={{ scale: 0.97 }}
@@ -88,17 +88,6 @@ const Projects = () => {
       </motion.div>
 
       {/* Search */}
-      <div className="relative mb-8 max-w-md">
-        <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-4 w-4 text-white/30" />
-        <input
-          placeholder="Search projects..."
-          value={search}
-          onChange={(e) => setSearch(e.target.value)}
-          className="input-pill w-full pl-11"
-        />
-      </div>
-
-      {/* Grid Layout */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {filtered.map((p, i) => (
           <motion.div
@@ -114,10 +103,10 @@ const Projects = () => {
             
             <div className="flex justify-between items-start mb-6">
               <div>
-                <h3 className="text-lg font-semibold text-white tracking-tight group-hover:text-white transition-colors">
+                <h3 className="text-lg font-semibold text-foreground tracking-tight group-hover:text-primary transition-colors">
                   {p.name}
                 </h3>
-                <p className="text-xs text-white/40 font-light mt-1 italic tracking-wide">{p.client}</p>
+                <p className="text-xs text-muted-foreground font-light mt-1 italic tracking-wide">{p.client}</p>
               </div>
               <button
                 onClick={(e) => { e.stopPropagation(); handleDelete(p.id); }}
@@ -131,44 +120,44 @@ const Projects = () => {
             <div className="space-y-4 mb-8">
               <div className="flex justify-between items-end">
                 <span className="stat-label uppercase !text-[9px]">Progress</span>
-                <span className="text-xs font-mono text-white/60">{p.progress}%</span>
+                <span className="text-xs font-mono text-white/40">{p.progress}%</span>
               </div>
-              <div className="h-1.5 bg-white/5 rounded-full overflow-hidden border border-white/5 shadow-inner">
+              <div className="h-1.5 bg-white/10 rounded-full overflow-hidden border border-white/10 shadow-inner">
                 <motion.div
                   initial={{ width: 0 }}
                   animate={{ width: `${p.progress}%` }}
                   transition={{ delay: i * 0.05 + 0.3, duration: 1, ease: "circOut" }}
-                  className="h-full bg-gradient-to-r from-white/40 to-white rounded-full shadow-[0_0_10px_rgba(255,255,255,0.2)]"
+                  className="h-full bg-gradient-to-r from-zinc-500/30 via-zinc-500/60 to-zinc-500 rounded-full shadow-[0_0_8px_rgba(113,113,122,0.2)]"
                 />
               </div>
             </div>
 
-            <div className="mt-auto pt-6 border-t border-white/5 flex items-center justify-between">
+            <div className="mt-auto pt-6 border-t border-border/50 flex items-center justify-between">
               <span className={`text-[9px] px-2.5 py-1 rounded-full font-bold uppercase tracking-widest border ${
                 p.status === 'Done' ? 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20' :
                 p.status === 'In Progress' ? 'bg-blue-500/10 text-blue-400 border-blue-500/20' :
                 p.status === 'Review' ? 'bg-amber-500/10 text-amber-400 border-amber-500/20' :
-                'bg-white/5 text-white/30 border border-white/10'
+                'bg-white/5 text-white/40 border border-white/10'
               }`}>
                 {p.status}
               </span>
               <div className="text-right">
-                <p className="text-[10px] text-white/20 uppercase font-bold tracking-[0.2em] mb-1">Budget</p>
-                <p className="text-sm font-semibold text-white mono tracking-tighter">{p.budget}</p>
+                <p className="text-[10px] text-muted-foreground uppercase font-bold tracking-[0.2em] mb-1">Budget</p>
+                <p className="text-sm font-semibold text-foreground mono tracking-tighter">{p.budget}</p>
               </div>
             </div>
 
             {/* Subtle bottom-right indicator */}
             <div className="absolute bottom-4 left-6 flex items-center gap-1.5">
-               <div className="w-1 h-1 rounded-full bg-white/20" />
-               <span className="text-[10px] font-mono italic text-white/20">{p.deadline}</span>
+               <div className="w-1 h-1 rounded-full bg-foreground/20" />
+               <span className="text-[10px] font-mono italic text-muted-foreground/40">{p.deadline}</span>
             </div>
           </motion.div>
         ))}
 
         {filtered.length === 0 && (
           <div className="col-span-full py-20 text-center glass-card-premium">
-            <p className="text-sm text-white/30 italic font-light">No active missions found in current sector.</p>
+            <p className="text-sm text-muted-foreground italic font-light">No active missions found in current sector.</p>
           </div>
         )}
       </div>
@@ -186,18 +175,18 @@ const Projects = () => {
               initial={{ scale: 0.9, y: 20 }}
               animate={{ scale: 1, y: 0 }}
               exit={{ scale: 0.9, y: 20 }}
-              className="w-full max-w-md bg-zinc-950 border border-white/10 rounded-[32px] p-8 shadow-2xl relative"
+              className="w-full max-w-md bg-black border border-white/10 rounded-[32px] p-8 shadow-2xl relative"
             >
               {/* Subtle mesh background for modal */}
               <div className="absolute -top-24 -right-24 w-48 h-48 bg-white/5 rounded-full blur-3xl pointer-events-none" />
               
-              <button onClick={() => setShowModal(false)} className="absolute top-5 right-5 p-2 text-white/30 hover:text-white hover:bg-white/10 rounded-full transition-all z-50 cursor-pointer">
+              <button onClick={() => setShowModal(false)} className="absolute top-5 right-5 p-2 text-muted-foreground/40 hover:text-foreground hover:bg-foreground/5 rounded-full transition-all z-50 cursor-pointer">
                 <X className="w-5 h-5" />
               </button>
               
               <div className="relative z-10">
-                <h2 className="text-2xl font-semibold text-white mb-1 tracking-tight">New Project</h2>
-                <p className="text-sm text-white/40 mb-8 font-light italic">Define the parameters of your next mission.</p>
+                <h2 className="text-2xl font-semibold text-foreground mb-1 tracking-tight">New Project</h2>
+                <p className="text-sm text-muted-foreground mb-8 font-light italic">Define the parameters of your next mission.</p>
                 
                 <form onSubmit={handleAdd} className="space-y-6">
                   <div className="space-y-1.5">

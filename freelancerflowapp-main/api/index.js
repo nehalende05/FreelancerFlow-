@@ -178,6 +178,39 @@ app.get('/api/clients/:id/risk', authenticateToken, (req, res) => {
   res.json(risk);
 });
 
+
+//  Explainable Risk Details 
+app.get('/api/clients/:id/risk-details', authenticateToken, (req, res) => {
+  const clients = readData('clients.json');
+  const client = clients.find(c => String(c.id) === String(req.params.id));
+  if (!client) return res.status(404).json({ message: 'Client not found' });
+
+  const { risk_score, risk_level } = calculateRiskScore(client);
+
+  const reasons = [];
+  if ((client.late_payments || 0) > 2) reasons.push('Multiple late payments detected');
+  else if ((client.late_payments || 0) > 0) reasons.push(`${client.late_payments} late payment(s) on record`);
+  if ((client.overdue_invoices || 0) > 0) reasons.push('Outstanding overdue invoices');
+  if ((client.avg_response_time_days || 0) > 2) reasons.push('Slow communication pattern');
+  if ((client.completed_projects || 0) > 5) reasons.push('Long-term client  loyalty bonus applied');
+
+  const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'];
+  const base = Math.max(0, risk_score - 35);
+  const seed = (client.late_payments || 0) * 3 + (client.overdue_invoices || 0) * 5;
+  const timeline = months.map((date, i) => {
+    const wave = Math.round(Math.sin(i + seed) * 6);
+    const value = Math.round(base + ((risk_score - base) * i) / 5) + wave;
+    return { date, risk: Math.min(100, Math.max(0, value)) };
+  });
+
+  let suggestion;
+  if (risk_score > 60) suggestion = 'Request partial advance payment before continuing work.';
+  else if ((client.overdue_invoices || 0) > 0) suggestion = 'Follow up immediately for the pending payment.';
+  else if ((client.avg_response_time_days || 0) > 2) suggestion = 'Set clear communication expectations with this client.';
+  else suggestion = 'Client is in good standing  keep nurturing the relationship.';
+
+  res.json({ risk_score, risk_level, reasons, timeline, suggestion });
+});
 app.get('/api/projects', authenticateToken, (req, res) => {
   const projects = readData('projects.json');
   res.json(projects);

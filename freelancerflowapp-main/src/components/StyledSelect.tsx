@@ -53,7 +53,7 @@ export const StyledSelect = ({ options, value, onChange, placeholder, icon }: St
             initial={{ opacity: 0, y: 10, scale: 0.95 }}
             animate={{ opacity: 1, y: 4, scale: 1 }}
             exit={{ opacity: 0, y: 10, scale: 0.95 }}
-            className="absolute top-full left-0 right-0 z-[110] mt-2 bg-zinc-900/95 backdrop-blur-2xl border border-white/10 rounded-[24px] shadow-2xl overflow-hidden py-2"
+            className="absolute top-full left-0 right-0 z-[110] mt-2 bg-[#050505]/95 backdrop-blur-2xl border border-white/10 rounded-[24px] shadow-2xl overflow-hidden py-2"
           >
             <div className="max-h-60 overflow-y-auto scrollbar-none">
               {options.length === 0 ? (

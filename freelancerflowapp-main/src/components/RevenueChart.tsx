@@ -20,17 +20,17 @@ export const RevenueChart = () => {
     >
       <div className="flex items-center justify-between mb-4">
         <div>
-          <h3 className="stat-label">Revenue Overview</h3>
-          <p className="text-xl font-bold text-foreground mt-1">$44,650</p>
+          <h3 className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground mb-1">Revenue Overview</h3>
+          <p className="text-2xl font-bold text-foreground">$44,650</p>
         </div>
         <div className="flex items-center gap-4 text-[10px]">
           <div className="flex items-center gap-1.5">
-            <div className="h-2 w-2 rounded-full bg-primary" />
-            <span className="text-muted-foreground">Revenue</span>
+            <div className="h-2 w-2 rounded-full bg-violet-500" />
+            <span className="text-muted-foreground uppercase tracking-widest font-bold">Revenue</span>
           </div>
           <div className="flex items-center gap-1.5">
-            <div className="h-2 w-2 rounded-full bg-accent" />
-            <span className="text-muted-foreground">Expenses</span>
+            <div className="h-2 w-2 rounded-full bg-cyan-500" />
+            <span className="text-muted-foreground uppercase tracking-widest font-bold">Expenses</span>
           </div>
         </div>
       </div>
@@ -52,15 +52,15 @@ export const RevenueChart = () => {
             <YAxis hide />
             <Tooltip
               contentStyle={{
-                background: "rgba(12, 12, 12, 0.8)",
+                background: "var(--popover)",
                 backdropFilter: "blur(16px)",
-                border: "1px solid rgba(255,255,255,0.1)",
+                border: "1px solid var(--border)",
                 borderRadius: "12px",
                 fontSize: "12px",
-                color: "white",
+                color: "var(--foreground)",
               }}
-              itemStyle={{ color: "white" }}
-              labelStyle={{ color: "rgba(255,255,255,0.5)", fontWeight: "600", marginBottom: "4px" }}
+              itemStyle={{ color: "var(--foreground)" }}
+              labelStyle={{ color: "var(--muted-foreground)", fontWeight: "600", marginBottom: "4px" }}
             />
             <Area type="monotone" dataKey="revenue" stroke="hsl(263, 70%, 66%)" fill="url(#revGrad)" strokeWidth={2} />
             <Area type="monotone" dataKey="expenses" stroke="hsl(187, 92%, 55%)" fill="url(#expGrad)" strokeWidth={2} />

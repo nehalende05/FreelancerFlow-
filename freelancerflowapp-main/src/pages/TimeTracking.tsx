@@ -32,8 +32,8 @@ const TimeTracking = () => {
   return (
     <div className="p-6 h-screen overflow-y-auto selection:bg-white/20">
       <motion.div initial={{ opacity: 0, y: -12 }} animate={{ opacity: 1, y: 0 }} className="mb-10">
-        <h1 className="text-3xl font-semibold tracking-tighter text-white">Time Tracking</h1>
-        <p className="text-sm text-white/40 font-light mt-1 italic">Precision tracking for high-performance deep work.</p>
+        <h1 className="text-3xl font-semibold tracking-tighter text-foreground">Time Tracking</h1>
+        <p className="text-sm text-muted-foreground font-light mt-1 italic">Precision tracking for high-performance deep work.</p>
       </motion.div>
 
       {/* Timer */}
@@ -47,11 +47,11 @@ const TimeTracking = () => {
         <p className="stat-label mb-6">Active Mission Session</p>
         <motion.p
           key={seconds}
-          className="text-6xl md:text-7xl font-semibold text-white mono tracking-tighter selection:bg-white/10"
+          className="text-6xl md:text-7xl font-semibold text-foreground mono tracking-tighter selection:bg-primary/10"
         >
           {formatTime(seconds)}
         </motion.p>
-        <p className="text-sm text-white/40 mt-4 font-light italic tracking-wide">Landing Page Redesign &ndash; Nova Labs</p>
+        <p className="text-sm text-muted-foreground mt-4 font-light italic tracking-wide">Landing Page Redesign &ndash; Nova Labs</p>
 
         <div className="flex items-center justify-center gap-6 mt-10">
           <motion.button
@@ -60,8 +60,8 @@ const TimeTracking = () => {
             onClick={() => setIsRunning(!isRunning)}
             className={`h-16 w-16 rounded-full flex items-center justify-center transition-all ${
               isRunning
-                ? "bg-rose-500/10 text-rose-400 border border-rose-500/20 hover:bg-rose-500/20"
-                : "bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 hover:bg-emerald-500/20"
+                ? "bg-rose-500/10 text-rose-600 dark:text-rose-400 border border-rose-500/20 hover:bg-rose-500/20"
+                : "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20 hover:bg-emerald-500/20"
             }`}
           >
             {isRunning ? <Pause className="h-6 w-6" /> : <Play className="h-6 w-6 ml-1" />}
@@ -70,7 +70,7 @@ const TimeTracking = () => {
             whileTap={{ scale: 0.95 }}
             whileHover={{ scale: 1.05 }}
             onClick={() => { setSeconds(0); setIsRunning(false); }}
-            className="h-16 w-16 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white/40 hover:text-white hover:border-white/20 transition-all"
+            className="h-16 w-16 rounded-full bg-secondary/50 dark:bg-white/5 border border-border dark:border-white/10 flex items-center justify-center text-muted-foreground/40 hover:text-foreground hover:border-primary/20 dark:hover:border-white/20 transition-all"
           >
             <RotateCcw className="h-5 w-5" />
           </motion.button>
@@ -97,17 +97,17 @@ const TimeTracking = () => {
               className="flex items-center justify-between px-6 py-4.5 hover:bg-white/[0.03] transition-colors group"
             >
               <div className="flex items-center gap-4">
-                <div className="h-10 w-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center group-hover:border-white/20 transition-colors">
-                  <Clock className="h-4 w-4 text-white/40 group-hover:text-white transition-colors" />
+                <div className="h-10 w-10 rounded-full bg-secondary/50 dark:bg-white/5 border border-border dark:border-white/10 flex items-center justify-center group-hover:border-primary/20 dark:group-hover:border-white/20 transition-colors">
+                  <Clock className="h-4 w-4 text-muted-foreground/40 group-hover:text-foreground transition-colors" />
                 </div>
                 <div>
-                  <p className="text-sm font-medium text-white tracking-tight">{entry.project}</p>
-                  <p className="text-[10px] text-white/30 font-light mt-0.5">{entry.client}</p>
+                  <p className="text-sm font-medium text-foreground tracking-tight">{entry.project}</p>
+                  <p className="text-[10px] text-muted-foreground/60 font-light mt-0.5">{entry.client}</p>
                 </div>
               </div>
               <div className="text-right">
-                <p className="text-sm font-semibold text-white mono tracking-tighter">{entry.duration}</p>
-                <p className="text-[10px] text-white/30 font-mono italic mt-0.5">{entry.date}</p>
+                <p className="text-sm font-semibold text-foreground mono tracking-tighter">{entry.duration}</p>
+                <p className="text-[10px] text-muted-foreground/60 font-mono italic mt-0.5">{entry.date}</p>
               </div>
             </motion.div>
           ))}

@@ -3,7 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 import { StatCard } from "@/components/StatCard";
 import { KanbanBoard } from "@/components/KanbanBoard";
 import { RevenueChart } from "@/components/RevenueChart";
-import { DecisionEngine } from "@/components/DecisionEngine";
+import { AICopilotInsights } from "@/components/AICopilotInsights";
 import { motion } from "framer-motion";
 import { useAuth } from "@/contexts/AuthContext";
 import { UserDropdown } from "@/components/UserDropdown";
@@ -86,14 +86,14 @@ const Dashboard = () => {
           <RevenueChart />
         </div>
 
-        {/* AI Decision Engine */}
+        {/* AI Copilot Insights */}
         <motion.div
           initial={{ opacity: 0, x: 12 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ delay: 0.4, duration: 0.5 }}
           className="lg:col-span-4"
         >
-          <DecisionEngine />
+          <AICopilotInsights />
         </motion.div>
 
         {/* Kanban Preview */}
